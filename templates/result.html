@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QR Code Result</title>
+</head>
+<body>
+    <h1>QR Code Result</h1>
+    <img src="{{ url_for('static', filename=qr_filename) }}" alt="QR Code">
+    <br>
+    <button type="button" onclick="javascript:history.back()">Back</button>
+    <a href="{{ url_for('download', filename=qr_filename) }}"><button class='btn btn-default'>Download QR Code</button></a>
+</body>
+</html>

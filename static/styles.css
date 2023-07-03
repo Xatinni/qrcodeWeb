@@ -1,0 +1,41 @@
+/* Styles for the form */
+form {
+    margin: 20px;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="url"],
+  input[type="tel"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #005aab;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Styles for the result page */
+  .result {
+    margin: 20px;
+    text-align: center;
+  }
+  
+  .qrcode {
+    display: block;
+    margin: 0 auto;
+    max-width: 300px;
+  }
+  
+  /* Global styles */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    color: #333;
+  }
+  
