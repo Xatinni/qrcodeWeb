@@ -2,8 +2,24 @@ import os
 from flask import Flask, render_template, request, send_file, redirect, url_for
 import qrcode
 from PIL import Image
+import glob
+import time
 
 app = Flask(__name__)
+
+# Delete PNG files that were created more than 5 minutes ago
+def delete_old_files():
+    current_time = time.time()
+    ten_minutes_ago = current_time - 5 * 60
+
+    static_folder = app.static_folder
+    files = glob.glob(os.path.join(static_folder, '*.png'))
+    for f in files:
+        file_modified_time = os.path.getmtime(f)
+        if file_modified_time < ten_minutes_ago:
+            with open(f, 'rb') as file:  # Open the file in binary mode
+                file_contents = file.read()  # Read the file as bytes
+            os.remove(f)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -65,12 +81,16 @@ def index():
         qr_filepath = os.path.join(app.static_folder, qr_filename)
         qr_image.save(qr_filepath)
         
+        # Delete PNG files that were created more then 5 minutes ago
+        delete_old_files()
+
         # Return the result template
         return redirect(url_for('result', first_name=first_name, last_name=last_name))
 
     return render_template('form.html')
 
 @app.route('/result')
+
 def result():
     first_name = request.args.get('first_name')
     last_name = request.args.get('last_name')
@@ -87,4 +107,7 @@ def download(filename):
 
 
 if __name__ == '__main__':
+    # Delete PNG files that were created more than 5 minutes ago
+    delete_old_files()
+
     app.run(host='0.0.0.0', debug=True)
