@@ -110,4 +110,4 @@ if __name__ == '__main__':
     # Delete PNG files that were created more than 5 minutes ago
     delete_old_files()
 
-    app.run(host='0.0.0.0', debug=True)
+    app.run(host='0.0.0.0', debug=False)
