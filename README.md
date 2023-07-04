@@ -1,4 +1,4 @@
-simple web application using Python to create a QR code business vCard
+A simple web application using Python to create a QR code business vCard
 
 Docker Hub
 - https://hub.docker.com/repository/docker/guyneale/qrcodeweb/general
